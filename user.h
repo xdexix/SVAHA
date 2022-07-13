@@ -108,8 +108,8 @@ user user::read_user(int base_number)
 
 ostream& operator << (ostream& os, const user& u)
 {
-	os << setw(30) << "Ïîëüçîâàòåëü:" << setw(15) << u.user_id << endl << setw(15) << u.gender << setw(10) << u.age << setw(15) << u.sity << endl;
-	for (string n : u.interest) os << setw(15) << n; os << endl << setw(30) << "Èùåò ïîëüçîâàòåëü:" << setw(15) << u.user_id << endl;
+	os << setw(30) << "ĞŸĞ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒ:" << setw(15) << u.user_id << endl << setw(15) << u.gender << setw(10) << u.age << setw(15) << u.sity << endl;
+	for (string n : u.interest) os << setw(15) << n; os << endl << setw(30) << "Ğ˜Ñ‰ĞµÑ‚ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒ:" << setw(15) << u.user_id << endl;
 	cout << setw(15) << u.want_gender << setw(10) << u.want_age << setw(15) << u.want_sity << endl;
 	for (string n : u.want_interest) os << setw(15) << n; os << endl;
 	return os;
@@ -117,14 +117,14 @@ ostream& operator << (ostream& os, const user& u)
 
 void user::print()
 {
-	if (gender == "Ìóæñêîé") SetColor(White, Blue); else SetColor(White, Red);
-	string_center("Ïîëüçîâàòåëü: " + user_id);
-	if (gender == "Ìóæñêîé") SetColor(White, LightBlue); else SetColor(White, LightRed);
+	if (gender == "ĞœÑƒĞ¶ÑĞºĞ¾Ğ¹") SetColor(White, Blue); else SetColor(White, Red);
+	string_center("ĞŸĞ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒ: " + user_id);
+	if (gender == "ĞœÑƒĞ¶ÑĞºĞ¾Ğ¹") SetColor(White, LightBlue); else SetColor(White, LightRed);
 	cout << setw(15) << gender << setw(10) << age << setw(15) << sity << endl;
 	for (string n : interest) cout << setw(15) << n; cout << endl;
-	if (want_gender == "Ìóæñêîé") SetColor(White, Blue); else SetColor(White, Red);
-	string_center("Èùåò ïîëüçîâàòåëü: " + user_id);
-	if (want_gender == "Ìóæñêîé") SetColor(White, LightBlue); else SetColor(White, LightRed);
+	if (want_gender == "ĞœÑƒĞ¶ÑĞºĞ¾Ğ¹") SetColor(White, Blue); else SetColor(White, Red);
+	string_center("Ğ˜Ñ‰ĞµÑ‚ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒ: " + user_id);
+	if (want_gender == "ĞœÑƒĞ¶ÑĞºĞ¾Ğ¹") SetColor(White, LightBlue); else SetColor(White, LightRed);
 	cout << setw(15) << want_gender << setw(10) << want_age << setw(15) << want_sity << endl;
 	for (string n : want_interest) cout << setw(15) << n; cout << endl;
 	SetColor(White, Black);
@@ -132,18 +132,18 @@ void user::print()
 
 void user::print_user_info()
 {
-	if (gender == "Ìóæñêîé") SetColor(White, Blue); else SetColor(White, Red);
-	string_center("Ïîëüçîâàòåëü: " + user_id);
-	if (gender == "Ìóæñêîé") SetColor(White, LightBlue); else SetColor(White, LightRed);
+	if (gender == "ĞœÑƒĞ¶ÑĞºĞ¾Ğ¹") SetColor(White, Blue); else SetColor(White, Red);
+	string_center("ĞŸĞ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒ: " + user_id);
+	if (gender == "ĞœÑƒĞ¶ÑĞºĞ¾Ğ¹") SetColor(White, LightBlue); else SetColor(White, LightRed);
 	cout << setw(15) << gender << setw(10) << age << setw(15) << sity << endl;
 	for (string n : interest) cout << setw(15) << n; cout << endl;
 }
 
 void user::print_user_dreams()
 {
-	if (want_gender == "Ìóæñêîé") SetColor(White, Blue); else SetColor(White, Red);
-	string_center("Èùåò ïîëüçîâàòåëü: " + user_id);
-	if (want_gender == "Ìóæñêîé") SetColor(White, LightBlue); else SetColor(White, LightRed);
+	if (want_gender == "ĞœÑƒĞ¶ÑĞºĞ¾Ğ¹") SetColor(White, Blue); else SetColor(White, Red);
+	string_center("Ğ˜Ñ‰ĞµÑ‚ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒ: " + user_id);
+	if (want_gender == "ĞœÑƒĞ¶ÑĞºĞ¾Ğ¹") SetColor(White, LightBlue); else SetColor(White, LightRed);
 	cout << setw(15) << want_gender << setw(10) << want_age << setw(15) << want_sity << endl;
 	for (string n : want_interest) cout << setw(15) << n; cout << endl;
 	SetColor(White, Black);
