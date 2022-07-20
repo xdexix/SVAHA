@@ -4,15 +4,15 @@
 
 class user
 {
-	string			user_id,
-					gender,
-					sity,
-					want_gender, 
-					want_sity;
-	short int		age,
-					want_age;
+	string		user_id,
+			gender,
+			sity,
+			want_gender, 
+			want_sity;
+	short int	age,
+			want_age;
 	vector<string>	interest,
-					want_interest;
+			want_interest;
 public:
 	user();
 	user(string _user_id, string _gender, short int _age, string _sity,
