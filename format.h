@@ -8,7 +8,7 @@ enum ConsoleColor
     LightBlue, LightGreen, LightCyan, LightRed, LightMagenta, Yellow, White
 };
 
-void SetColor(int text, int background)
+void set_color_console(int text, int background)
 {
     HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
@@ -16,10 +16,21 @@ void SetColor(int text, int background)
 
 string remove_rn(string n)
 {
-	size_t found = n.find('\r');
-	if (found != std::string::npos)
-		n.erase(found, 1);
+	size_t found_r = n.find('\r');
+	if (found_r != string::npos)
+		n.erase(found_r, 1);
+    size_t found_esc = n.find(27);
+    if (found_esc != string::npos)
+        n.erase(found_esc, 1);
 	return n;
+}
+
+void goto_xy(int X, int Y)
+{
+    HANDLE hConsole;
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD coord = { X, Y };
+    SetConsoleCursorPosition(hStdOut, coord);
 }
 
 bool file_exist(int base_number)
@@ -45,10 +56,37 @@ void string_center(string str)
     HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO info;
     GetConsoleScreenBufferInfo(h, &info);
-    short x = 120 / 2 - (str.size() / 2);
+    short x = 122 / 2 - (str.size() / 2);
     info.dwCursorPosition.X = x;
     SetConsoleCursorPosition(h, info.dwCursorPosition);
     cout << str << endl;
+}
+
+void string_center(string str, int y)
+{
+    HANDLE hConsole;
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    short x = 122 / 2 - (str.size() / 2);
+    COORD coord = { x, y };
+    SetConsoleCursorPosition(hStdOut, coord);
+    cout << str << endl;
+}
+
+template <typename T>
+void var_cin(T* var, string message = "Попробуйте снова!")
+{
+    cin >> *var;
+    while (cin.fail())
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cin.sync();
+        cout << message + ": ";
+        cin >> *var;
+    }
+    cin.clear();
+    cin.ignore(1000, '\n');
+    cin.sync();
 }
 
 #endif
