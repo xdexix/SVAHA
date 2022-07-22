@@ -4,15 +4,15 @@
 
 class user
 {
-	string		user_id,
-			gender,
-			sity,
-			want_gender, 
-			want_sity;
-	short int	age,
-			want_age;
-	vector<string>	interest,
-			want_interest;
+	string			user_id,
+				gender,
+				sity,
+				want_gender, 
+				want_sity;
+	short int		age,
+				want_age;
+	vector<string>		interest,
+				want_interest;
 public:
 	user();
 	user(string _user_id, string _gender, short int _age, string _sity,
@@ -25,6 +25,7 @@ public:
 	void print_user_dreams();
 	void push_interest(string i);
 	void push_w_interest(string i);
+	friend void find();
 };
 
 user::user()
@@ -115,6 +116,9 @@ user user::read_user(int base_number)
 	}
 	in_dreams.close();
 
+	remove_duplicates(temp.interest);
+	remove_duplicates(temp.want_interest);
+
 	return temp;
 }
 
@@ -195,10 +199,10 @@ user new_user()
 		_getch();
 		switch (_getch())
 		{
-		case 75: // left
+		case LEFT:
 			gender = "Мужской";
 			break;
-		case 77: // right
+		case RIGHT:
 			gender = "Женский";
 			break;
 		}
@@ -230,10 +234,10 @@ user new_user()
 		_getch();
 		switch (_getch())
 		{
-		case 75: // left
+		case LEFT:
 			w_gender = "Мужской";
 			break;
-		case 77: // right
+		case RIGHT:
 			w_gender = "Женский";
 			break;
 		}
@@ -272,33 +276,10 @@ user new_user()
 	}
 	out_2.close();
 
-	user temp(name, gender, *age, sity, w_gender, *w_age, w_sity);
-	int o = 0; string line ="";
-	while (interest[o] != '\0')
-	{
-		line += interest[o];
-		if (interest[o] != '\n')
-		{
-			temp.push_interest(line);
-			line = "";
-		}
-		o++;
-	}
-	temp.push_interest(line); o = 0;
-	while (w_interest[o] != '\0')
-	{
-		line += interest[o];
-		if (interest[o] != '\n')
-		{
-			temp.push_w_interest(line);
-			line = "";
-		}
-		o++;
-	} temp.push_w_interest(line);
-	char k = ' ';
+	user temp;
+	temp = temp.read_user(n);
 	set_color_console(White, Black);
 	cout << endl << "\tВаш ID: " << n << "\n\tНажимите любую клавишу для продолжения...";
-	while (k == ' ') k = _getch();
 	return temp;
 }
 
